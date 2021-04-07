@@ -1,9 +1,30 @@
 {
-	"productConfiguration": {
-		"nameShort": "VSCode Web Sample",
-		"nameLong": "VSCode Web without FileSystemProvider",
-		"applicationName": "code-web-sample",
-		"dataFolderName": ".vscode-web-sample",
-		"version": "1.2.3"
-	}
+  "productConfiguration": {
+    "nameShort": "Crossnote (nameShort)",
+    "nameLong": "Crossnote (nameLong)",
+    "applicationName": "crossnote-web",
+    "dataFolderName": ".crossnote-web-extensions",
+    "version": "1.2.3",
+    "date": "2021-3-30",
+    "portable": true,
+    "extensionAllowedProposedApi": [
+      "ms-vscode.vscode-js-profile-flame",
+      "ms-vscode.vscode-js-profile-table",
+      "ms-vscode.github-browser"
+    ],
+    "extensionsGallery": {
+      "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
+      "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
+      "itemUrl": "https://marketplace.visualstudio.com/items",
+      "controlUrl": "https://az764295.vo.msecnd.net/extensions/marketplace.json",
+      "recommendationsUrl": "https://az764295.vo.msecnd.net/extensions/workspaceRecommendations.json.gz"
+    }
+  },
+  "folderUri": {
+    "scheme": "memfs",
+    "path": "/sample-folder"
+  },
+  "settingsSyncOptions": {
+    "enabled": true
+  }
 }

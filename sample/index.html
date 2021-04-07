@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>VSCode Web Sample</title>
+    <title>Crossnote</title>
 
     <!-- Disable pinch zooming -->
     <meta
@@ -22,18 +22,62 @@
     <link rel="prefetch" href="./node_modules/semver-umd/lib/semver-umd.js" />
     <!-- Built in extension -->
     <script src="./node_modules/vscode-web/dist/extensions.js"></script>
-
+    <script src="./playground.js"></script>
   </head>
 
   <body aria-label=""></body>
 
   <script>
+    window.product = {
+      productConfiguration: {
+        nameShort: "Crossnote123 (nameShort)",
+        nameLong: "Crossnote123 (nameLong)",
+        applicationName: "crossnote-web",
+        dataFolderName: ".crossnote-web-extensions",
+        version: "1.2.3",
+        date: "2021-3-30",
+        portable: true,
+        extensionAllowedProposedApi: [
+          "ms-vscode.vscode-js-profile-flame",
+          "ms-vscode.vscode-js-profile-table",
+          "ms-vscode.github-browser",
+        ],
+        extensionsGallery: {
+          serviceUrl:
+            "https://marketplace.visualstudio.com/_apis/public/gallery",
+          cacheUrl: "https://vscode.blob.core.windows.net/gallery/index",
+          itemUrl: "https://marketplace.visualstudio.com/items",
+          controlUrl:
+            "https://az764295.vo.msecnd.net/extensions/marketplace.json",
+          recommendationsUrl:
+            "https://az764295.vo.msecnd.net/extensions/workspaceRecommendations.json.gz",
+        },
+      },
+      folderUri: {
+        scheme: "memfs",
+        path: "/sample-folder",
+      },
+      settingsSyncOptions: {
+        enabled: true,
+      },
+      commands: [
+        {
+          id: "browser.showDirectoryPicker",
+          handler: async () => {
+            const dirHandle = await window.showDirectoryPicker();
+            return dirHandle;
+          },
+        },
+      ],
+    };
+
     const extElement = document.getElementById(
       "vscode-workbench-builtin-extensions"
     );
-    extElement.attributes["data-settings"].value = JSON.stringify([
-      ...extensions,
-    ]);
+    const extensionList = [...extensions, ...playground];
+    extElement.attributes["data-settings"].value = JSON.stringify(
+      extensionList
+    );
 
     let baseUri = `${window.location.origin}`;
     self.require = {
@@ -46,7 +90,6 @@
     };
   </script>
   <script src="./node_modules/vscode-web/dist/vscode/vs/loader.js"></script>
-
   <script src="./node_modules/vscode-web/dist/vscode/vs/workbench/workbench.web.api.nls.js"></script>
   <script src="./node_modules/vscode-web/dist/vscode/vs/workbench/workbench.web.api.js"></script>
   <script src="./node_modules/vscode-web/dist/vscode/vs/code/browser/workbench/workbench.js"></script>
